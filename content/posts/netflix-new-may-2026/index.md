@@ -21,6 +21,13 @@ draft: false
 
 ---
 
+## 公式情報
+
+> 📎 **出典**：[Netflix公式 - New on Netflix](https://about.netflix.com/en/new-to-watch)
+> 📎 **参考**：[Netflix Tudum - New on Netflix in May 2026](https://www.netflix.com/tudum/articles/new-on-netflix)
+
+---
+
 ## 2026年5月 注目作品一覧
 
 {{< infobox title="2026年5月 Netflix新着 注目作品" >}}

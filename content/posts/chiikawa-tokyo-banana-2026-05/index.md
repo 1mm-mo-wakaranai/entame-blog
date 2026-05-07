@@ -21,6 +21,12 @@ draft: false
 
 ---
 
+## 公式情報
+
+> 📎 **出典**：[ちいかわ × 東京ばな奈 公式サイト](https://www.tokyobanana.jp/products/banana_chiikawa.html)
+
+---
+
 ## 2026年春〜5月の催事情報一覧
 
 {{< chat name="タメちゃん" icon="/images/tame-icon.png" direction="right" >}}

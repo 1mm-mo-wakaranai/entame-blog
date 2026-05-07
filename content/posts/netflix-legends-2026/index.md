@@ -21,6 +21,12 @@ Netflixの新作『Legends』ってどんなドラマ？Stranger Thingsのチー
 
 ---
 
+## 公式情報
+
+> 📎 **出典**：[Netflix公式 - New to Watch](https://about.netflix.com/en/new-to-watch)
+
+---
+
 ## 基本情報
 
 {{< infobox title="『Legends』基本情報" >}}

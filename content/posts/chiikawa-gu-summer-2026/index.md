@@ -21,6 +21,12 @@ draft: false
 
 ---
 
+## 公式情報
+
+> 📎 **出典**：[GU公式サイト ちいかわコラボページ](https://www.gu-global.com/jp/ja/feature/contents/collaboration/may/all)
+
+---
+
 ## コラボ第2弾の基本情報
 
 {{< infobox title="ちいかわ × GU 2026夏コラボ 基本情報" >}}
