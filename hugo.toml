@@ -1,0 +1,76 @@
+baseURL = "https://entame.wakaru-note.com/"
+languageCode = "ja"
+defaultContentLanguage = "ja"
+title = "今日のエンタメ速報"
+theme = "PaperMod"
+paginate = 10
+
+[params]
+  env = "production"
+  description = "映画・ドラマ・グッズ・イベントの最新情報をいち早くお届け"
+  author = "今日のエンタメ速報"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = false
+  ShowToc = true
+  TocOpen = false
+  defaultTheme = "light"
+
+  [params.homeInfoParams]
+    Title = "今日のエンタメ速報"
+    Content = "映画・ドラマ・グッズ・イベントの最新情報をわかりやすくお届けします。"
+
+  [[params.socialIcons]]
+    name = "x"
+    url = "https://x.com/1mm_mowakaranai"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    codeFences = true
+    lineNos = false
+    style = "monokai"
+
+[menu]
+  [[menu.main]]
+    identifier = "movie"
+    name = "🎬 映画・ドラマ"
+    url = "/categories/映画・ドラマ/"
+    weight = 10
+  [[menu.main]]
+    identifier = "goods"
+    name = "🧸 グッズ"
+    url = "/categories/グッズ/"
+    weight = 20
+  [[menu.main]]
+    identifier = "event"
+    name = "🎪 イベント"
+    url = "/categories/イベント/"
+    weight = 30
+  [[menu.main]]
+    identifier = "search"
+    name = "検索"
+    url = "/search/"
+    weight = 40
+  [[menu.main]]
+    identifier = "privacy"
+    name = "プライバシーポリシー"
+    url = "/privacy/"
+    weight = 50
+  [[menu.main]]
+    identifier = "contact"
+    name = "お問い合わせ"
+    url = "/contact/"
+    weight = 60
+  [[menu.main]]
+    identifier = "about"
+    name = "プロフィール"
+    url = "/about/"
+    weight = 45

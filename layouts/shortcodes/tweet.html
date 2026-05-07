@@ -1,0 +1,12 @@
+{{/* Twitter/X 埋め込みショートコード */}}
+{{/* 使い方: {{< tweet id="1234567890" >}} */}}
+
+{{ $id := .Get "id" }}
+{{ $user := .Get "user" | default "x" }}
+
+<div style="display: flex; justify-content: center; margin: 1.5rem 0;">
+  <blockquote class="twitter-tweet">
+    <a href="https://twitter.com/{{ $user }}/status/{{ $id }}"></a>
+  </blockquote>
+</div>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

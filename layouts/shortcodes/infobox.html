@@ -1,0 +1,9 @@
+{{/* 情報ボックスショートコード */}}
+{{/* 使い方: {{< infobox title="商品情報" >}}内容{{< /infobox >}} */}}
+
+{{ $title := .Get "title" | default "基本情報" }}
+
+<div class="info-box">
+  <h4>📋 {{ $title }}</h4>
+  {{ .Inner | markdownify }}
+</div>

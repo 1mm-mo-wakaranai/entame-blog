@@ -1,0 +1,161 @@
+/* ========================================
+   吹き出し会話スタイル
+   ひつじアフィリエイト風の会話UI
+======================================== */
+
+.chat-bubble {
+  display: flex;
+  align-items: flex-start;
+  margin: 1.5rem 0;
+  gap: 12px;
+}
+
+.chat-bubble.chat-right {
+  flex-direction: row-reverse;
+}
+
+.chat-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.chat-icon img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}
+
+.chat-name {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.chat-text {
+  position: relative;
+  background: #f1f1f1;
+  border-radius: 16px;
+  padding: 12px 16px;
+  max-width: 70%;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.chat-left .chat-text {
+  background: #f1f1f1;
+  border-top-left-radius: 4px;
+}
+
+.chat-right .chat-text {
+  background: #dcf8c6;
+  border-top-right-radius: 4px;
+}
+
+.chat-text p {
+  margin: 0;
+}
+
+/* 吹き出しの三角 */
+.chat-left .chat-text::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: -8px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent #f1f1f1 transparent transparent;
+}
+
+.chat-right .chat-text::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: -8px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #dcf8c6;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  .chat-icon img {
+    width: 48px;
+    height: 48px;
+  }
+  .chat-icon {
+    min-width: 48px;
+  }
+  .chat-text {
+    max-width: 80%;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   情報ボックス（発売日・価格などのまとめ）
+======================================== */
+
+.info-box {
+  background: #f8f9fa;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.info-box h4 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1rem;
+  color: #333;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.4rem;
+}
+
+.info-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-box ul li {
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.info-box ul li:last-child {
+  border-bottom: none;
+}
+
+/* ========================================
+   カテゴリバッジ
+======================================== */
+
+.category-badge {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.category-badge.movie {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.category-badge.goods {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+.category-badge.event {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
