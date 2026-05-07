@@ -1,0 +1,9 @@
+{{/* Instagram 埋め込みショートコード */}}
+{{/* 使い方: {{< instagram url="https://www.instagram.com/reel/xxxxx/" >}} */}}
+
+{{ $url := .Get "url" }}
+
+<div style="display: flex; justify-content: center; margin: 1.5rem 0;">
+  <blockquote class="instagram-media" data-instgrm-permalink="{{ $url }}" data-instgrm-version="14" style="max-width:540px; width:100%;"></blockquote>
+</div>
+<script async src="//www.instagram.com/embed.js"></script>
