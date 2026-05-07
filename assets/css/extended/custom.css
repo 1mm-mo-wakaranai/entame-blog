@@ -159,3 +159,150 @@
   background: #f3e5f5;
   color: #6a1b9a;
 }
+
+/* ========================================
+   トップページ（ひつじアフィリエイト風）
+======================================== */
+
+.top-hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.top-hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.top-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.top-category-links {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.top-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.top-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+.top-btn.movie {
+  background: linear-gradient(135deg, #1565c0, #42a5f5);
+}
+
+.top-btn.goods {
+  background: linear-gradient(135deg, #c62828, #ef5350);
+}
+
+.top-btn.event {
+  background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+}
+
+.top-btn.about {
+  background: linear-gradient(135deg, #2e7d32, #66bb6a);
+}
+
+@media (max-width: 600px) {
+  .top-hero h1 {
+    font-size: 1.5rem;
+  }
+  .top-subtitle {
+    font-size: 0.95rem;
+  }
+  .top-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ========================================
+   トップページ 最新記事一覧
+======================================== */
+
+.top-recent-posts {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+.top-recent-posts h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.top-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.top-post-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.top-post-card:hover {
+  background: #eef2ff;
+  transform: translateX(4px);
+}
+
+.top-post-date {
+  font-size: 0.8rem;
+  color: #888;
+  min-width: 80px;
+}
+
+.top-post-title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.top-post-category {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+@media (max-width: 600px) {
+  .top-post-card {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .top-post-date {
+    min-width: auto;
+  }
+  .top-post-title {
+    width: 100%;
+  }
+}

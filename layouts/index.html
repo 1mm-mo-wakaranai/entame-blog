@@ -1,0 +1,24 @@
+{{- define "main" }}
+
+<article class="post-single">
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+</article>
+
+<div class="top-recent-posts">
+  <h2>📰 最新の記事</h2>
+  <div class="top-post-list">
+    {{- range first 5 (where .Site.RegularPages "Section" "posts") }}
+    <a href="{{ .Permalink }}" class="top-post-card">
+      <span class="top-post-date">{{ .Date.Format "2006.01.02" }}</span>
+      <span class="top-post-title">{{ .Title }}</span>
+      {{- with .Params.categories }}
+      <span class="top-post-category">{{ index . 0 }}</span>
+      {{- end }}
+    </a>
+    {{- end }}
+  </div>
+</div>
+
+{{- end }}

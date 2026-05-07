@@ -20,8 +20,8 @@ theme = "PaperMod"
   defaultTheme = "light"
 
   [params.homeInfoParams]
-    Title = "今日のエンタメ速報"
-    Content = "映画・ドラマ・グッズ・イベントの最新情報をわかりやすくお届けします。"
+    Title = ""
+    Content = ""
 
   [[params.socialIcons]]
     name = "x"
