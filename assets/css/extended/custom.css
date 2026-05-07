@@ -161,13 +161,12 @@
 }
 
 /* ========================================
-   トップページ（ひつじアフィリエイト風）
+   トップページ（カード型3カラム）
 ======================================== */
 
 .top-hero {
   text-align: center;
-  padding: 2rem 1rem;
-  margin-bottom: 1rem;
+  padding: 2.5rem 1rem 1.5rem;
 }
 
 .top-hero h1 {
@@ -180,58 +179,82 @@
 }
 
 .top-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #666;
 }
 
-.top-category-links {
-  text-align: center;
-  margin: 1.5rem 0;
+.top-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 2rem 0 3rem;
 }
 
-.top-btn {
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  font-weight: 700;
+.top-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.2rem;
+  border-radius: 16px;
   text-decoration: none;
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.top-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+.top-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   color: white;
 }
 
-.top-btn.movie {
+.top-card.movie {
   background: linear-gradient(135deg, #1565c0, #42a5f5);
 }
 
-.top-btn.goods {
+.top-card.goods {
   background: linear-gradient(135deg, #c62828, #ef5350);
 }
 
-.top-btn.event {
+.top-card.event {
   background: linear-gradient(135deg, #6a1b9a, #ab47bc);
 }
 
-.top-btn.about {
-  background: linear-gradient(135deg, #2e7d32, #66bb6a);
+.top-card-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.top-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.top-card-desc {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  line-height: 1.5;
 }
 
 @media (max-width: 600px) {
+  .top-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .top-card {
+    padding: 1.5rem 1rem;
+    flex-direction: row;
+    gap: 1rem;
+    text-align: left;
+  }
+  .top-card-emoji {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
   .top-hero h1 {
     font-size: 1.5rem;
-  }
-  .top-subtitle {
-    font-size: 0.95rem;
-  }
-  .top-btn {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
   }
 }
 
