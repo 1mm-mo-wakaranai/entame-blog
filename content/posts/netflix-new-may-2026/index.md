@@ -4,7 +4,7 @@ date: 2026-05-07
 tags: ["Netflix", "配信", "映画", "ドラマ"]
 categories: ["映画・ドラマ"]
 description: "2026年5月にNetflixで配信開始される新作映画・ドラマをまとめました。注目作品を厳選して紹介します。"
-draft: false
+draft: true
 ---
 
 ## この記事で分かること

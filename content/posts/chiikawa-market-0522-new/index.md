@@ -4,7 +4,7 @@ date: 2026-05-22
 tags: ["ちいかわ", "ちいかわマーケット", "新商品", "グッズ"]
 categories: ["グッズ"]
 description: "ちいかわマーケットで2026年5月22日11時に新商品が発売。5周年キャンペーン中の注目アイテムや購入時の注意点、売り切れ対策をまとめました。"
-draft: false
+draft: true
 cover:
   image: "images/cover.png"
   alt: "ちいかわマーケット5月22日新商品発売情報"
