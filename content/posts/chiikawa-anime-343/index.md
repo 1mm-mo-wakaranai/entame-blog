@@ -22,6 +22,9 @@ cover:
 2026年5月15日（金）の朝7:36頃にめざましテレビ内で放送だよ！見逃しても大丈夫、YouTube・TVer・FODで1週間限定配信があるから安心してね。
 {{< /chat >}}
 
+![この記事のBefore/After](images/comparison-before-after.png)
+
+
 ---
 
 ## 公式発表：アニメちいかわ第343話の放送予告

@@ -17,6 +17,9 @@ Netflixの新作『Legends』ってどんなドラマ？Stranger Thingsのチー
 本当だよ！Stranger Thingsのクリエイターがプロデュースした新作SFスリラーなの。しかもキャストがめちゃくちゃ豪華！詳しく紹介するね。
 {{< /chat >}}
 
+![この記事のBefore/After](images/comparison-before-after.png)
+
+
 この記事では、2026年5月7日にNetflixで配信開始されたドラマ『Legends』のあらすじ、キャスト、見どころを詳しくまとめています。視聴前の予習にも、視聴後の振り返りにもお使いください。
 
 ---
