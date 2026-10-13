@@ -43,7 +43,7 @@ theme = "PaperMod"
   [[menu.main]]
     identifier = "movie"
     name = "🎬 映画・ドラマ"
-    url = "/categories/映画・ドラマ/"
+    url = "/categories/映画ドラマ/"
     weight = 10
   [[menu.main]]
     identifier = "goods"

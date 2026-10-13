@@ -1,24 +1,140 @@
 {{- define "main" }}
+{{- /*
+  トップページ（POPデザイン 2026/10〜）
+  ちいかわ・サンリオの世界観を意識した、パステル×ステッカー風のデザイン。
+  権利者のキャラクターの絵やロゴは使わず、星・ハート・雲などの自作モチーフだけで表現する。
+  スタイルは assets/css/extended/custom.css の「トップページ（POPデザイン）」ブロック。
+*/}}
+{{- $posts := where site.RegularPages "Section" "posts" }}
 
-<article class="post-single">
-  <div class="post-content">
-    {{ .Content }}
-  </div>
-</article>
+<div class="pop-home">
 
-<div class="top-recent-posts">
-  <h2>📰 最新の記事</h2>
-  <div class="top-post-list">
-    {{- range first 5 (where .Site.RegularPages "Section" "posts") }}
-    <a href="{{ .Permalink }}" class="top-post-card">
-      <span class="top-post-date">{{ .Date.Format "2006.01.02" }}</span>
-      <span class="top-post-title">{{ .Title }}</span>
-      {{- with .Params.categories }}
-      <span class="top-post-category">{{ index . 0 }}</span>
-      {{- end }}
+  {{- /* 飾り用のSVG（星・ハート・きらきら・雲）。下の <use> から参照する */}}
+  <svg class="pop-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="pop-star" viewBox="0 0 100 100"><path fill="currentColor" d="M50 6 61 37h33L67 57l10 32-27-19-27 19 10-32L6 37h33z"/></symbol>
+    <symbol id="pop-heart" viewBox="0 0 100 100"><path fill="currentColor" d="M50 88C21 67 7 51 7 33 7 19 18 9 31 9c8 0 15 4 19 11 4-7 11-11 19-11 13 0 24 10 24 24 0 18-14 34-43 55z"/></symbol>
+    <symbol id="pop-sparkle" viewBox="0 0 100 100"><path fill="currentColor" d="M50 4c4 30 16 42 46 46-30 4-42 16-46 46-4-30-16-42-46-46 30-4 42-16 46-46z"/></symbol>
+    <symbol id="pop-cloud" viewBox="0 0 120 80"><path fill="currentColor" d="M30 70C15 70 6 60 8 48c2-10 11-15 20-14 2-14 15-24 30-22 12 2 20 10 22 21 3-1 6-2 9-2 13 0 23 9 23 21 0 11-9 18-21 18z"/></symbol>
+  </svg>
+
+  <!-- ヒーロー -->
+  <section class="pop-hero" aria-labelledby="pop-hero-title">
+    <div class="pop-deco" aria-hidden="true">
+      <svg class="d1"><use href="#pop-star"/></svg>
+      <svg class="d2"><use href="#pop-heart"/></svg>
+      <svg class="d3"><use href="#pop-sparkle"/></svg>
+      <svg class="d4" viewBox="0 0 120 80"><use href="#pop-cloud"/></svg>
+      <svg class="d5"><use href="#pop-star"/></svg>
+      <svg class="d6"><use href="#pop-heart"/></svg>
+      <svg class="d7"><use href="#pop-sparkle"/></svg>
+      <svg class="d8" viewBox="0 0 120 80"><use href="#pop-cloud"/></svg>
+    </div>
+
+    <div class="pop-hero-inner">
+      <p class="pop-badge">♡ 今日のかわいい、まとめました</p>
+      <h1 id="pop-hero-title" class="pop-title">
+        <span class="pop-title-sub">今日の</span>
+        <span class="pop-title-main"><span class="c1">エ</span><span class="c2">ン</span><span class="c3">タ</span><span class="c4">メ</span><span class="c5">速</span><span class="c6">報</span></span>
+      </h1>
+      <p class="pop-lead">ちいかわ・サンリオのグッズやコラボ、イベントの最新情報を、発売日・価格・買い方までわかりやすくまとめてお届けします。</p>
+
+      <form class="pop-search" action="{{ "search/" | relURL }}" method="get" role="search">
+        <span class="pop-search-icon" aria-hidden="true">🔍</span>
+        <label class="pop-sr" for="pop-q">サイト内検索</label>
+        <input id="pop-q" type="search" name="q" placeholder="キャラ名・商品名でさがす" autocomplete="off">
+        <button type="submit">さがす</button>
+      </form>
+
+      {{- /* 人気のキーワード。実在するタグだけ表示する */}}
+      {{- $chipTags := slice "ちいかわ" "サンリオ" "映画ちいかわ" "新商品" "コラボグッズ" "ちいぽけ" }}
+      {{- $tagTerms := slice }}{{ with site.GetPage "/tags" }}{{ $tagTerms = .Pages }}{{ end }}
+      <ul class="pop-chips" aria-label="人気のキーワード">
+        {{- range $i, $t := $chipTags }}
+        {{- range first 1 (where $tagTerms "Title" $t) }}
+        <li><a class="pop-chip pop-chip-{{ add (mod $i 6) 1 }}" href="{{ .RelPermalink }}">#{{ $t }}</a></li>
+        {{- end }}
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+
+  <!-- いちばん新しい話題 -->
+  {{- range first 1 $posts }}
+  {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
+  <section class="pop-section" aria-labelledby="pop-latest-title">
+    <h2 id="pop-latest-title" class="pop-h2"><span class="pop-h2-mark" aria-hidden="true">✨</span>いちばん新しい話題</h2>
+    <a class="pop-feature" href="{{ .RelPermalink }}">
+      <span class="pop-feature-media">
+        {{ partial "pop-thumb.html" (dict "page" . "width" 960 "cat" $cat "eager" true) }}
+        <span class="pop-new" aria-hidden="true">NEW</span>
+      </span>
+      <span class="pop-feature-body">
+        <span class="pop-meta">
+          {{- with $cat }}<span class="pop-cat-chip">{{ . }}</span>{{ end }}
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+        </span>
+        <span class="pop-feature-title">{{ .Title }}</span>
+        <span class="pop-feature-desc">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 100 }}{{ end }}</span>
+        <span class="pop-more">読んでみる <span aria-hidden="true">→</span></span>
+      </span>
     </a>
-    {{- end }}
-  </div>
-</div>
+  </section>
+  {{- end }}
 
-{{- end }}
+  <!-- カテゴリ -->
+  {{- $cats := slice
+    (dict "name" "グッズ" "emoji" "🧸" "desc" "新商品・ガチャ・受注販売" "cls" "is-goods")
+    (dict "name" "イベント" "emoji" "🎪" "desc" "ポップアップ・コラボカフェ" "cls" "is-event")
+    (dict "name" "映画・ドラマ" "emoji" "🎬" "desc" "公開日・配信・前売り券" "cls" "is-movie") }}
+  <section class="pop-section" aria-labelledby="pop-cat-title">
+    <h2 id="pop-cat-title" class="pop-h2"><span class="pop-h2-mark" aria-hidden="true">🎀</span>カテゴリからさがす</h2>
+    {{- $catTerms := slice }}{{ with site.GetPage "/categories" }}{{ $catTerms = .Pages }}{{ end }}
+    <div class="pop-cats">
+      {{- range $cats }}
+      {{- $c := . }}
+      {{- range first 1 (where $catTerms "Title" $c.name) }}
+      <a class="pop-cat {{ $c.cls }}" href="{{ .RelPermalink }}">
+        <span class="pop-cat-emoji" aria-hidden="true">{{ $c.emoji }}</span>
+        <span class="pop-cat-text">
+          <span class="pop-cat-name">{{ $c.name }}</span>
+          <span class="pop-cat-desc">{{ $c.desc }}</span>
+        </span>
+        <span class="pop-cat-count">{{ len .Pages }}記事</span>
+      </a>
+      {{- end }}
+      {{- end }}
+    </div>
+  </section>
+
+  <!-- 新着記事 -->
+  <section class="pop-section" aria-labelledby="pop-list-title">
+    <h2 id="pop-list-title" class="pop-h2"><span class="pop-h2-mark" aria-hidden="true">🍭</span>新着記事</h2>
+    <div class="pop-grid">
+      {{- range after 1 (first 10 $posts) }}
+      {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
+      {{- $cls := "is-other" }}
+      {{- if eq $cat "グッズ" }}{{ $cls = "is-goods" }}{{ else if eq $cat "イベント" }}{{ $cls = "is-event" }}{{ else if eq $cat "映画・ドラマ" }}{{ $cls = "is-movie" }}{{ end }}
+      <a class="pop-card {{ $cls }}" href="{{ .RelPermalink }}">
+        <span class="pop-card-media">{{ partial "pop-thumb.html" (dict "page" . "width" 640 "cat" $cat) }}</span>
+        <span class="pop-card-body">
+          <span class="pop-meta">
+            {{- with $cat }}<span class="pop-cat-chip">{{ . }}</span>{{ end }}
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+          </span>
+          <span class="pop-card-title">{{ .Title }}</span>
+        </span>
+      </a>
+      {{- end }}
+    </div>
+    <p class="pop-center"><a class="pop-btn" href="{{ "posts/" | relURL }}">記事をもっと見る <span aria-hidden="true">→</span></a></p>
+  </section>
+
+  <!-- このサイトについて（公式と誤解されないように明記） -->
+  <section class="pop-about" aria-labelledby="pop-about-title">
+    <p id="pop-about-title" class="pop-about-title">このサイトについて</p>
+    <p>「今日のエンタメ速報」は、キャラクターグッズやイベントが大好きな運営者が、公式の発表をもとにまとめている個人のファンブログです。公式・各企業とは関係ありません。キャラクターや商品の権利は、それぞれの権利者に帰属します。</p>
+    <a href="{{ "about/" | relURL }}">運営者について <span aria-hidden="true">→</span></a>
+  </section>
+
+</div>
+{{- end }}{{/* end main */}}

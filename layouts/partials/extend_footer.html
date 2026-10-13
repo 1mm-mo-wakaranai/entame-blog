@@ -1,0 +1,19 @@
+{{- /* 検索ページ: トップの検索窓から来たとき（/search/?q=キーワード）に、そのキーワードで検索結果を出す */}}
+{{- if eq .Layout "search" }}
+<script>
+(function () {
+  var q = new URLSearchParams(location.search).get("q");
+  var input = document.getElementById("searchInput");
+  if (!q || !input) return;
+  input.value = q;
+  // 検索インデックスの読み込みが終わるまで、少し間をおいて検索を実行し直す
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries++;
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    var results = document.getElementById("searchResults");
+    if ((results && results.children.length) || tries > 25) clearInterval(timer);
+  }, 300);
+})();
+</script>
+{{- end }}
