@@ -345,3 +345,43 @@
 .post-content {
   max-width: 100%;
 }
+
+/* ========================================
+   忍者アドマックス広告（AIブログ・ググワカと同じ配置・出し分け）
+   ======================================== */
+/* 記事冒頭広告の余白 */
+.ad-top-article {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+/* 記事中広告の余白 */
+.ad-mid-article {
+  text-align: center;
+  margin: 2.5rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+/* 中盤の自動挿入広告・記事末尾の広告の余白 */
+.ad-mid-auto {
+  margin: 2.5rem 0;
+}
+.ad-after-related {
+  text-align: center;
+  margin: 2rem 0 1rem;
+}
+/* PC用広告：デフォルト表示、スマホで非表示 */
+.admax-pc {
+  display: block;
+}
+.admax-sp {
+  display: none;
+}
+@media (max-width: 768px) {
+  .admax-pc {
+    display: none;
+  }
+  .admax-sp {
+    display: block;
+  }
+}
