@@ -1,8 +1,31 @@
 {{- define "main" }}
+{{- /*
+  記事ページ（POPデザイン 2026/10〜）。テーマ PaperMod の single.html をもとに、
+  ・記事（posts）は「本文カード＋右サイドバー」の2カラム（スマホは1カラム）
+  ・見出し上にカテゴリ・日付・読了時間、タイトル下にタグを表示
+  ・記事冒頭広告（extend_article）と本文直後の関連記事＋広告（extend_post_content）を呼び出す
+  にしている。スタイルは assets/css/extended/custom.css の「記事ページ（POPデザイン）」ブロック。
+*/}}
+{{- $isPost := eq .Section "posts" }}
 
-<article class="post-single">
+<div class="pop-article-layout{{ if $isPost }} has-sidebar{{ end }}">
+
+<article class="post-single pop-article">
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
+    {{- if $isPost }}
+    <div class="pop-article-meta">
+      {{- range .GetTerms "categories" }}
+      <a class="pop-cat-chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      {{- end }}
+      {{- if not .Date.IsZero }}
+      <span><span aria-hidden="true">📅</span> <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time></span>
+      {{- end }}
+      {{- if (.Param "ShowReadingTime") }}
+      <span><span aria-hidden="true">☕</span> 約{{ .ReadingTime }}分で読めます</span>
+      {{- end }}
+    </div>
+    {{- end }}
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
       {{- if .Draft }}
@@ -19,7 +42,15 @@
       {{ .Description }}
     </div>
     {{- end }}
-    {{- if not (.Param "hideMeta") }}
+    {{- if $isPost }}
+    {{- with .GetTerms "tags" }}
+    <ul class="pop-article-tags" aria-label="この記事のタグ">
+      {{- range . }}
+      <li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+    {{- else if not (.Param "hideMeta") }}
     <div class="post-meta">
       {{- partial "post_meta.html" . -}}
       {{- partial "translation_list.html" . -}}
@@ -30,7 +61,7 @@
   </header>
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
-  {{- /* 記事冒頭広告（忍者アドマックス）。テーマのsingle.htmlにこの1行だけ追加している */}}
+  {{- /* 記事冒頭広告（忍者アドマックス） */}}
   {{- partial "extend_article.html" . }}
   {{- if (.Param "ShowToc") }}
   {{- partial "toc.html" . }}
@@ -44,15 +75,20 @@
   </div>
   {{- end }}
 
+  {{- /* 関連記事と記事末尾の広告 */}}
   {{- partial "extend_post_content.html" . }}
 
   <footer class="post-footer">
+    {{- if not $isPost }}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+    {{- with ($.GetTerms $tags) }}
     <ul class="post-tags">
-      {{- range ($.GetTerms $tags) }}
+      {{- range . }}
       <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
       {{- end }}
     </ul>
+    {{- end }}
+    {{- end }}
     {{- if (.Param "ShowPostNavLinks") }}
     {{- partial "post_nav_links.html" . }}
     {{- end }}
@@ -65,5 +101,11 @@
   {{- partial "comments.html" . }}
   {{- end }}
 </article>
+
+{{- if $isPost }}
+{{ partial "pop-sidebar.html" . }}
+{{- end }}
+
+</div>
 
 {{- end }}{{/* end main */}}

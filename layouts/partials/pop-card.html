@@ -1,0 +1,14 @@
+{{- /* 記事カード（トップの新着記事・記事ページの関連記事で共通）。引数は記事ページ */}}
+{{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
+{{- $cls := "is-other" }}
+{{- if eq $cat "グッズ" }}{{ $cls = "is-goods" }}{{ else if eq $cat "イベント" }}{{ $cls = "is-event" }}{{ else if eq $cat "映画・ドラマ" }}{{ $cls = "is-movie" }}{{ end }}
+<a class="pop-card {{ $cls }}" href="{{ .RelPermalink }}">
+  <span class="pop-card-media">{{ partial "pop-thumb.html" (dict "page" . "width" 640 "cat" $cat) }}</span>
+  <span class="pop-card-body">
+    <span class="pop-meta">
+      {{- with $cat }}<span class="pop-cat-chip">{{ . }}</span>{{ end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+    </span>
+    <span class="pop-card-title">{{ .Title }}</span>
+  </span>
+</a>

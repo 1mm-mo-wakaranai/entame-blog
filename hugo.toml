@@ -1,5 +1,7 @@
 baseURL = "https://entame.wakaru-note.com/"
 languageCode = "ja"
+# 日本語の文字数で読了時間・要約を計算する（未設定だと5,000字の記事でも「2分」になっていた）
+hasCJKLanguage = true
 defaultContentLanguage = "ja"
 title = "今日のエンタメ速報"
 theme = "PaperMod"

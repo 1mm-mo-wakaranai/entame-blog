@@ -1,7 +1,20 @@
 {{- /* 記事本文の直後に出す広告（忍者アドマックス）。AIブログ・ググワカと同じ配置・出し分け */}}
 {{- /* 広告枠IDはAIブログのものを流用中（エンタメ用の枠を作ったら差し替える） */}}
 {{ if and .IsPage (eq .Section "posts") }}
-<!-- 記事末尾（あわせて読みたいの下）：広告（忍者アドマックス） -->
+<!-- 関連記事（タグが近い記事を3件。カードはトップの新着記事と共通） -->
+{{- $related := first 3 (where (site.RegularPages.Related .) "Section" "posts") }}
+{{- with $related }}
+<section class="pop-related" aria-labelledby="pop-related-title">
+  <h2 id="pop-related-title" class="pop-related-title"><span aria-hidden="true">📚</span>こちらの記事もおすすめ</h2>
+  <div class="pop-related-grid">
+    {{- range . }}
+    {{ partial "pop-card.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
+<!-- 記事末尾（関連記事の下）：広告（忍者アドマックス） -->
 <div class="ad-after-related">
   <!-- PC: 横長バナー -->
   <div class="admax-pc">

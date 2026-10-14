@@ -111,19 +111,7 @@
     <h2 id="pop-list-title" class="pop-h2"><span class="pop-h2-mark" aria-hidden="true">🍭</span>新着記事</h2>
     <div class="pop-grid">
       {{- range after 1 (first 10 $posts) }}
-      {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
-      {{- $cls := "is-other" }}
-      {{- if eq $cat "グッズ" }}{{ $cls = "is-goods" }}{{ else if eq $cat "イベント" }}{{ $cls = "is-event" }}{{ else if eq $cat "映画・ドラマ" }}{{ $cls = "is-movie" }}{{ end }}
-      <a class="pop-card {{ $cls }}" href="{{ .RelPermalink }}">
-        <span class="pop-card-media">{{ partial "pop-thumb.html" (dict "page" . "width" 640 "cat" $cat) }}</span>
-        <span class="pop-card-body">
-          <span class="pop-meta">
-            {{- with $cat }}<span class="pop-cat-chip">{{ . }}</span>{{ end }}
-            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
-          </span>
-          <span class="pop-card-title">{{ .Title }}</span>
-        </span>
-      </a>
+      {{ partial "pop-card.html" . }}
       {{- end }}
     </div>
     <p class="pop-center"><a class="pop-btn" href="{{ "posts/" | relURL }}">記事をもっと見る <span aria-hidden="true">→</span></a></p>

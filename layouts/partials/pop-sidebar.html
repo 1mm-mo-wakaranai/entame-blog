@@ -1,0 +1,56 @@
+{{- /* 記事ページの右サイドバー（スマホでは本文の下に回る）。カテゴリ・新着記事・人気のキーワード・広告 */}}
+{{- $current := . }}
+<aside class="pop-sidebar" aria-label="サイドバー">
+
+  <section class="pop-side-card" aria-labelledby="pop-side-cat">
+    <h2 id="pop-side-cat" class="pop-side-title"><span aria-hidden="true">🎀</span>カテゴリ</h2>
+    {{- $cats := slice
+      (dict "name" "グッズ" "emoji" "🧸" "cls" "is-goods")
+      (dict "name" "イベント" "emoji" "🎪" "cls" "is-event")
+      (dict "name" "映画・ドラマ" "emoji" "🎬" "cls" "is-movie") }}
+    {{- $catTerms := slice }}{{ with site.GetPage "/categories" }}{{ $catTerms = .Pages }}{{ end }}
+    <ul class="pop-side-cats">
+      {{- range $cats }}
+      {{- $c := . }}
+      {{- range first 1 (where $catTerms "Title" $c.name) }}
+      <li><a class="{{ $c.cls }}" href="{{ .RelPermalink }}"><span aria-hidden="true">{{ $c.emoji }}</span>{{ $c.name }}<span class="pop-side-count">{{ len .Pages }}</span></a></li>
+      {{- end }}
+      {{- end }}
+    </ul>
+  </section>
+
+  <section class="pop-side-card" aria-labelledby="pop-side-new">
+    <h2 id="pop-side-new" class="pop-side-title"><span aria-hidden="true">🍭</span>新着記事</h2>
+    <ul class="pop-side-posts">
+      {{- range first 5 (where site.RegularPages "Section" "posts") }}
+      {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
+      <li>
+        <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>
+          <span class="pop-side-thumb">{{ partial "pop-thumb.html" (dict "page" . "width" 240 "cat" $cat) }}</span>
+          <span class="pop-side-post-text">
+            <span class="pop-side-post-title">{{ .Title }}</span>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+          </span>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+
+  <section class="pop-side-card" aria-labelledby="pop-side-tag">
+    <h2 id="pop-side-tag" class="pop-side-title"><span aria-hidden="true">💬</span>人気のキーワード</h2>
+    <ul class="pop-side-tags">
+      {{- range $i, $t := first 10 site.Taxonomies.tags.ByCount }}
+      <li><a class="pop-chip pop-chip-{{ add (mod $i 6) 1 }}" href="{{ $t.Page.RelPermalink }}">#{{ $t.Page.LinkTitle }}</a></li>
+      {{- end }}
+    </ul>
+  </section>
+
+  {{- /* サイドバー広告（忍者アドマックス PC縦長。スマホでは非表示）。枠IDはAIブログのものを流用中 */}}
+  <div class="pop-side-card pop-side-ad admax-pc">
+    <!-- admax -->
+    <script src="https://adm.shinobi.jp/s/25c815535dff79bca66eab37f5254988"></script>
+    <!-- admax -->
+  </div>
+
+</aside>

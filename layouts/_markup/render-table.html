@@ -1,0 +1,40 @@
+{{- /* Markdownの表をラッパーで包む（角丸の枠・スマホでの横スクロール用）。中身は Hugo 標準の表の出力と同じ */ -}}
+<div class="pop-table-wrap">
+<table
+  {{- range $k, $v := .Attributes }}
+    {{- if $v }}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- end }}
+  {{- end }}>
+  <thead>
+    {{- range .THead }}
+    <tr>
+      {{- range . }}
+      <th
+        {{- with .Alignment }}
+          {{- printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}
+        {{- end -}}
+      >
+        {{- .Text -}}
+      </th>
+      {{- end }}
+    </tr>
+    {{- end }}
+  </thead>
+  <tbody>
+    {{- range .TBody }}
+    <tr>
+      {{- range . }}
+      <td
+        {{- with .Alignment }}
+          {{- printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}
+        {{- end -}}
+      >
+        {{- .Text -}}
+      </td>
+      {{- end }}
+    </tr>
+    {{- end }}
+  </tbody>
+</table>
+</div>
