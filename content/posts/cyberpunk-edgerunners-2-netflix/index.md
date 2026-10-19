@@ -4,6 +4,10 @@ date: 2026-10-18
 tags: ["Netflix", "サイバーパンク", "エッジランナーズ2", "TRIGGER", "アニメ"]
 categories: ["映画・ドラマ"]
 description: "アニメ『サイバーパンク: エッジランナーズ2』が10月20日からNetflixで全10話独占配信。前作を見ていなくても楽しめるのか、あらすじ、4人の主人公、スタッフ、見る前に知っておきたいことを公式情報をもとにまとめました。"
+events:
+  - date: "2026-10-20"
+    kind: "配信"
+    label: "サイバーパンク エッジランナーズ2 Netflix配信開始"
 draft: false
 cover:
   image: "images/cover.png"

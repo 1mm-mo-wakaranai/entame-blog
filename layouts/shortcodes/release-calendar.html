@@ -1,0 +1,56 @@
+{{- /*
+  発売日・予約カレンダー（/calendar/ で使用）。
+  各記事の front matter の events を集めて、日付順に月ごとに並べる。
+    events:
+      - date: "2026-10-24"    # 必須（並び順に使う。"10月下旬" など幅がある場合は目安の日を入れる）
+        time: "10:00"         # 任意
+        kind: "発売"          # 発売 / 予約 / しめきり / 抽選 / イベント / 配信
+        label: "表示する内容"
+        display: "10月下旬〜" # 任意（日付の代わりに表示する文字）
+        until: "2026-10-31"   # 任意（この日まで表示を残す。未指定なら date の日まで）
+  ビルド時点で今日以降の予定だけを出す（毎日の記事更新で再ビルドされるので自動で古い予定が消える）。
+*/}}
+{{- $today := now.Format "2006-01-02" }}
+{{- $items := slice }}
+{{- range where site.RegularPages "Section" "posts" }}
+  {{- $p := . }}
+  {{- range .Params.events }}
+    {{- $d := printf "%v" .date }}
+    {{- /* until があればその日まで表示を残す（「10月下旬〜」のように幅のある予定用） */}}
+    {{- $keep := printf "%v" (.until | default $d) }}
+    {{- if ge $keep $today }}
+      {{- $items = $items | append (dict "date" $d "time" (.time | default "") "kind" (.kind | default "発売") "label" .label "display" (.display | default "") "page" $p) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- $wd := slice "日" "月" "火" "水" "木" "金" "土" }}
+{{- $kinds := dict "発売" "is-release" "予約" "is-reserve" "しめきり" "is-deadline" "抽選" "is-lottery" "イベント" "is-event" "配信" "is-stream" }}
+{{- if not $items }}
+<p>いまお知らせできる予定はありません。新しい情報が出たら追加します。</p>
+{{- else }}
+{{- $items = sort $items "date" }}
+{{- $month := "" }}
+<div class="rel-cal">
+{{- range $items }}
+  {{- $t := time.AsTime .date }}
+  {{- $m := $t.Format "2006-01" }}
+  {{- if ne $m $month }}
+    {{- if ne $month "" }}</ul>{{ end }}
+    {{- $month = $m }}
+  <h2 class="rel-cal-month">{{ $t.Year }}年{{ int ($t.Format "1") }}月</h2>
+  <ul class="rel-cal-list">
+  {{- end }}
+    <li class="rel-cal-item">
+      <div class="rel-cal-date">
+        {{- if .display }}{{ .display }}{{ else }}{{ $t.Format "1/2" }}<span class="rel-cal-wd">({{ index $wd (int $t.Weekday) }})</span>{{ end }}
+        {{- with .time }}<span class="rel-cal-time">{{ . }}</span>{{ end }}
+      </div>
+      <div class="rel-cal-body">
+        <span class="rel-cal-kind {{ index $kinds .kind | default "is-release" }}">{{ .kind }}</span>
+        <a href="{{ .page.RelPermalink }}">{{ .label }}</a>
+      </div>
+    </li>
+{{- end }}
+  </ul>
+</div>
+{{- end }}

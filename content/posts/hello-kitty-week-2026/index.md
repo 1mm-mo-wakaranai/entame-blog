@@ -4,6 +4,17 @@ date: 2026-10-14
 tags: ["サンリオ", "ハローキティ", "誕生日", "イベント", "コラボグッズ"]
 categories: ["イベント"]
 description: "11月1日はハローキティのお誕生日。2026年のHELLO KITTY WEEKで何が行われるのか、表参道の体験イベント「Hello Kitty's Lounge」や新作グッズ、コラボ情報を、公式発表をもとにまとめました。"
+events:
+  - date: "2026-10-28"
+    kind: "イベント"
+    label: "Hello Kitty's Lounge 表参道ヒルズ（〜11/8）"
+    until: "2026-11-08"
+  - date: "2026-10-29"
+    kind: "発売"
+    label: "HELLO KITTY WEEK 新作グッズ発売"
+  - date: "2026-11-01"
+    kind: "イベント"
+    label: "ハローキティのお誕生日"
 draft: false
 cover:
   image: "images/cover.png"

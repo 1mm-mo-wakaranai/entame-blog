@@ -1,6 +1,8 @@
 {{- /* 記事本文の直後に出す広告（忍者アドマックス）。AIブログ・ググワカと同じ配置・出し分け */}}
 {{- /* 広告枠IDはAIブログのものを流用中（エンタメ用の枠を作ったら差し替える） */}}
 {{ if and .IsPage (eq .Section "posts") }}
+<!-- 発売日カレンダーへの案内（全記事に表示。まとめページに内部リンクを集める） -->
+<a class="rel-cal-cta" href="/calendar/"><span aria-hidden="true">📅</span>ほかのグッズの発売日・予約しめきりもカレンダーでチェック</a>
 <!-- 関連記事（タグが近い記事を3件。カードはトップの新着記事と共通） -->
 {{- $related := first 3 (where (site.RegularPages.Related .) "Section" "posts") }}
 {{- with $related }}
