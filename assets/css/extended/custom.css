@@ -2089,3 +2089,103 @@
     margin-left: 6px;
   }
 }
+
+/* ========================================
+   iPhone（スマホ）向けの調整（2026/10/23〜）
+   エンタメはiPhoneで見られることが多いので、画面の上の方に本文が早く出るようにする
+======================================== */
+/* iPhoneを横向きにしたとき、文字が勝手に大きくならないようにする */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* タップしたときの色をブログの色に合わせる */
+a,
+button {
+  -webkit-tap-highlight-color: rgba(255, 143, 183, 0.25);
+}
+
+/* 見出しの行の長さをそろえる（Safari 17.5以降・Chromeで有効。非対応なら通常どおり） */
+.pop-article .post-title,
+.pop-feature-title,
+.pop-card-title {
+  text-wrap: balance;
+}
+
+@media (max-width: 600px) {
+  /* ---- ヘッダーを低くして、本文を上に ---- */
+  .header .nav {
+    padding-top: 4px;
+    padding-bottom: 2px;
+  }
+  .header-nav .logo {
+    margin-inline-end: 8px;
+  }
+  .header-nav .logo a {
+    font-size: 1.15rem;
+  }
+  /* メニューは横スクロールのまま、右端をうすくして「続きがある」と分かるようにする */
+  #menu {
+    gap: 2px;
+    padding-bottom: 6px;
+    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+    scrollbar-width: none;
+  }
+  #menu::-webkit-scrollbar {
+    display: none;
+  }
+  #menu li + li {
+    margin-inline-start: 0;
+  }
+  .menu a {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+  .menu a span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 10px;
+    white-space: nowrap;
+  }
+
+  /* ---- 記事ページ ---- */
+  /* 「ホーム › 記事一覧」はスマホでは省いて、タイトルと本文を上に出す */
+  .pop-article .breadcrumbs {
+    display: none;
+  }
+  .pop-article .post-title {
+    font-size: 1.45rem;
+    line-height: 1.45;
+    word-break: auto-phrase;
+  }
+  .pop-article .post-description {
+    font-size: 0.92rem;
+  }
+
+  /* ---- トップページ ---- */
+  .pop-lead {
+    font-size: 0.98rem;
+  }
+
+  /* ---- 押しやすさ（iPhoneの目安は44px） ---- */
+  .pop-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .pop-about a {
+    display: inline-block;
+    padding: 10px 6px;
+  }
+}
+
+/* Safari（WebKit）対策：テーマの .logo-switches にある min-height: stretch を
+   WebKitが「画面いっぱいまで伸ばす」と解釈し、ダークモード切替ボタンの高さが656pxになって
+   ヘッダーが1画面以上の空白になっていた（2026/10/23にWebKitで確認）。高さは中身に合わせる */
+.logo-switches,
+.logo-switches > * {
+  min-height: auto;
+}
