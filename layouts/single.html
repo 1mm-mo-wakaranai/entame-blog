@@ -70,8 +70,8 @@
   {{- if .Content }}
   <div class="post-content md-content">
     {{- if not (.Param "disableAnchoredHeadings") }}
-    {{- partial "anchored_headings.html" .Content -}}
-    {{- else }}{{ .Content }}{{ end }}
+    {{- partial "mid-ad.html" (dict "html" (partial "anchored_headings.html" .Content) "pc" "c57aaf709f160a1a068c31642659daa1" "sp" "1d4eb3ef56ce46aa042b81d2393e660d") -}}
+    {{- else }}{{ partial "mid-ad.html" (dict "html" .Content "pc" "c57aaf709f160a1a068c31642659daa1" "sp" "1d4eb3ef56ce46aa042b81d2393e660d") }}{{ end }}
   </div>
   {{- end }}
 

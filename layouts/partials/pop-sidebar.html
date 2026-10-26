@@ -48,9 +48,7 @@
 
   {{- /* サイドバー広告（忍者アドマックス PC縦長。スマホでは非表示）。枠IDはAIブログのものを流用中 */}}
   <div class="pop-side-card pop-side-ad admax-pc">
-    <!-- admax -->
-    <script src="https://adm.shinobi.jp/s/f0490de8cbff0570f8db1f48d4f6d2f4"></script>
-    <!-- admax -->
+    {{ partial "admax.html" (dict "pc" "f0490de8cbff0570f8db1f48d4f6d2f4") }}
   </div>
 
 </aside>

@@ -1,17 +1,6 @@
 <!-- 記事冒頭広告（忍者アドマックス）。広告枠IDはAIブログのものを流用中（エンタメ用の枠を作ったら差し替える） -->
 {{ if and .IsPage (eq .Section "posts") }}
 <div class="ad-top-article">
-  <!-- PC: 横長バナー -->
-  <div class="admax-pc">
-    <!-- admax -->
-    <script src="https://adm.shinobi.jp/s/e7177f9153014e8adb65d83199b02b54"></script>
-    <!-- admax -->
-  </div>
-  <!-- スマホ: 横長バナー -->
-  <div class="admax-sp">
-    <!-- admax -->
-    <script src="https://adm.shinobi.jp/s/26a635986dfd0f8d25806808534dbff8"></script>
-    <!-- admax -->
-  </div>
+  {{ partial "admax.html" (dict "pc" "e7177f9153014e8adb65d83199b02b54" "sp" "26a635986dfd0f8d25806808534dbff8") }}
 </div>
 {{ end }}
